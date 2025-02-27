@@ -76,6 +76,7 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'   => '',
 	'hostname' => 'localhost',
+	'port'     => 3307, //porta alterada diferente do padrao mysql 3306 para mariadb 3307
 	'username' => 'root',
 	'password' => '',
 	'database' => 'projetomanyminds',
@@ -93,4 +94,5 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-  );
+);
+

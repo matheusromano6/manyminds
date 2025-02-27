@@ -6,51 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Projeto Manyminds</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-  <style>
-    body {
-      background: #f8f9fa;
-    }
-
-    .login-container {
-      max-width: 400px;
-      margin: 50px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .login-container h5 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      font-weight: bold;
-    }
-
-    .form-group input {
-      border-radius: 5px;
-    }
-
-    .btn-primary {
-      width: 100%;
-      border-radius: 5px;
-    }
-
-    .register-link {
-      display: block;
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .login-image {
-      display: block;
-      margin: 0 auto 20px auto;
-      max-width: 150px;
-      height: auto;
-    }
-  </style>
 </head>
 
 <body>
@@ -121,7 +76,51 @@
       </div>
     </div>
   </div>
+  <style>
+    body {
+      background: #f8f9fa;
+    }
 
+    .login-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container h5 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .form-group input {
+      border-radius: 5px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .register-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .login-image {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 150px;
+      height: auto;
+    }
+  </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
