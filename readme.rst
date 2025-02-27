@@ -1,71 +1,131 @@
-###################
-What is CodeIgniter
-###################
+# Documentação do Projeto Manyminds
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+## Introdução
+O projeto Manyminds é um sistema desenvolvido em PHP utilizando o framework CodeIgniter. O sistema gerencia colaboradores e seus respectivos endereços, além de manter um histórico de logs para auditoria. Há também uma API para listagem de colaboradores, protegida por autenticação via token.
 
-*******************
-Release Information
-*******************
+---
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+## Tecnologias Utilizadas
+- **PHP 7.x**
+- **CodeIgniter 3.x**
+- **MySQL**
+- **HTML5/CSS3**
+- **JavaScript (jQuery)**
+- **Bootstrap 4.6**
+- **Postman (para testes da API)**
 
-**************************
-Changelog and New Features
-**************************
+---
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+## Funcionalidades
+- CRUD de Colaboradores
+- Gestão de Endereços com Endereço Principal
+- Listagem de Colaboradores com Filtros e Paginação
+- Controle de Acesso e Autenticação de Usuários
+- Geração de Tokens para Consumo da API
+- Histórico de Logs de Ações no Sistema
+- API para Listagem de Colaboradores em JSON
 
-*******************
-Server Requirements
-*******************
+---
 
-PHP version 5.6 or newer is recommended.
+## Arquitetura do Projeto
+- **MVC (Model-View-Controller)**: Estrutura utilizada no CodeIgniter.
+- **Controllers**: `Colaboradores`, `Login`, `Dashboard`, `Logs`, `API`
+- **Models**: `ColaboradoresModel`, `UserModel`, `LogsModel`
+- **Views**: Formulários de cadastro/edição, listagem de colaboradores, logs, telas de login e dashboard.
+- **Assets**: Imagens e arquivos CSS/JS externos.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+---
 
-************
-Installation
-************
+## Banco de Dados
+O banco de dados MySQL foi estruturado com as seguintes tabelas principais:
+- **usuarios_colaboradores**: Dados pessoais e profissionais dos colaboradores.
+- **enderecos_colaboradores**: Endereços vinculados aos colaboradores.
+- **users**: Gerenciamento de usuários do sistema com token de acesso.
+- **sistema_logs**: Registro de ações realizadas no sistema para auditoria.
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+### Relacionamentos e Cardinalidades
+- **1 Colaborador** → **N Endereços** (Um colaborador pode ter múltiplos endereços, sendo apenas um o principal)
+- **1 Usuário** → **N Logs** (Um usuário pode gerar múltiplos registros de log)
 
-*******
-License
-*******
+### Diagrama ER (Entidade-Relacionamento)
+![Diagrama ER](er_diagram.png)
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+### Diagrama UML dos Models
+![Diagrama UML](uml_diagram.png)
 
-*********
-Resources
-*********
+---
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+## API de Colaboradores
+A API permite listar colaboradores em formato JSON, protegida por token de autenticação.
+### Endpoint
+```
+GET /api/colaboradores
+```
+### Header de Autenticação
+```
+Authorization: <api_token>
+```
+### Exemplo de Retorno
+```json
+[
+  {
+    "id": 1,
+    "nome": "JOÃO DA SILVA",
+    "email": "joao@example.com",
+    "telefone": "(11)91234-5678",
+    "cargo": "Desenvolvedor"
+  }
+]
+```
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+---
 
-***************
-Acknowledgement
-***************
+## Regras de Negócio
+- **Endereço Principal**: Um colaborador pode ter apenas um endereço principal.
+- **Status de Colaborador**: `active` (ativo) ou `inactive` (inativo).
+- **CPF**: Validado para quantidade de caracteres e formato correto.
+- **Data de Nascimento**: Permitido apenas de 1925 em diante.
+- **Data de Admissão**: Permitido apenas de 1925 em diante.
+- **Telefone**: Formato com máscara (XX)XXXXX-XXXX.
+- **Salário**: Exibido como valor monetário.
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+---
+
+## Como Instalar e Executar
+1. Clone o repositório:
+```
+git clone https://github.com/seuusuario/projetomanyminds.git
+```
+2. Configure o banco de dados em `application/config/database.php`
+3. Importe o arquivo SQL disponível na pasta `database`
+4. Configure o `base_url` em `application/config/config.php`
+5. Acesse o projeto via navegador em `http://localhost/projetomanyminds`
+
+---
+
+## Testando a API com Postman
+1. Abra o Postman e crie uma nova requisição.
+2. Selecione o método `GET` e use a URL: `http://localhost/projetomanyminds/api/colaboradores`
+3. No cabeçalho, adicione:
+```
+Authorization: <api_token>
+```
+4. Clique em `Send` para visualizar o retorno da API.
+
+---
+
+## Considerações Finais
+O projeto Manyminds foi desenvolvido seguindo as melhores práticas do CodeIgniter e com foco em Clean Code. É altamente escalável e permite fácil manutenção e expansão de funcionalidades.
+
+---
+
+## Autor
+- **Nome**: Desenvolvedor Manyminds
+- **GitHub**: [github.com/seuusuario](https://github.com/seuusuario)
+
+
+---
+
+## Licença
+Este projeto é licenciado sob a MIT License - consulte o arquivo `LICENSE.md` para detalhes.
+
